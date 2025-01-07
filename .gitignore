@@ -1,7 +1,6 @@
 !Build/
 .last_cover_stats
 /META.yml
-/META.json
 /MYMETA.*
 *.o
 *.pm.tdy
@@ -36,3 +35,7 @@ inc/
 
 # Temporary files
 .*~
+
+# Milla suggestions
+/PDL-ApplyDim-*
+!Meta.json

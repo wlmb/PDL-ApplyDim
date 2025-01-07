@@ -1,6 +1,7 @@
-use v5.36;
 package PDL::ApplyDim;
 
+use v5.36;
+our $VERSION = '0.001';
 use Carp;
 require Exporter;
 our @ISA=qw(Exporter);
@@ -75,7 +76,12 @@ sub _unshuffle_end($dims, $ndims){
 
 1;
 
+__END__
+
 # ABSTRACT: Conjugate a function with a permutation of the dimensions of an ndarray
+=head1 NAME
+
+PDL::ApplyDim - shuffle before and after applying function
 
 =head1 SYNOPSIS
 
@@ -85,8 +91,8 @@ sub _unshuffle_end($dims, $ndims){
     sub mult_columns($x, $dx, $m) { # multiply some columns of $x by $m
 	$x->slice("0:-1:$dx")*=$m;
     }
-    say $nd->apply_to(\&mult_columns, 1, 2, 3);      # multiply even rows of $nd by 3
-    say $nd->apply_not_to(\&mult_columns,0,2,3);     # same
+    say $nd->apply_to(\&mult_columns, 1, 2, 3); #multiply even rows of $nd by 3
+    say $nd->apply_not_to(\&mult_columns,0,2,3);# same
 
 =head1 DESCRIPTION
 
@@ -115,7 +121,9 @@ Besides a number, C<$dim> may also be an array reference, such as as
 =C<[$d0, $d1...]>, to move the dimensions C<$d0, $d1...> to the
 front or to the back instead of just a single dimension.
 
-=method apply_to($code, $dim, @extra_args)
+=head1 METHODS
+
+=head2 apply_to($code, $dim, @extra_args)
 
 Applies C<$code> to an ndarray after moving dimension C<$dim> to the
 front, and then bringing the dimension back to its original position.
@@ -123,10 +131,27 @@ Code can be a string naming a PDL function or a reference to a subroutine that a
 ndarray. It may take extra arguments. If <$dim> is an array reference, moves
 several dimensions.
 
-=method apply_not_to($code, $dim, @extra_args)
+=head2 apply_not_to($code, $dim, @extra_args)
 
 Applies <$code> to an ndarray after moving dimension C<$dim> to the
 end, and then bringing the dimension back to its original position.
 Code can be a string naming a PDL function or a reference to a subroutine that acts on an
 ndarray. It may take extra arguments. If <$dim> is an array reference, moves
 several dimensions.
+
+=head1 AUTHOR
+
+W. Luis Mochan E<lt>mochan@fis.unam.mxE<gt>
+
+=head1 COPYRIGHT
+
+Copyright 2025- W. Luis Mochan
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+# =head1 SEE ALSO
+
+=cut
