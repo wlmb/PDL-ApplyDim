@@ -1,7 +1,7 @@
 package PDL::ApplyDim;
 
 use v5.36;
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 use Carp;
 require Exporter;
 our @ISA=qw(Exporter);
